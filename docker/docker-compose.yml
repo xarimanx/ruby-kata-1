@@ -1,0 +1,47 @@
+version: '3'
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  bundle_cache:
+    driver: local
+  node_modules:
+    driver: local
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - .:/app:cached
+      - postgres-data:/var/lib/postgresql/data:cached
+  web: &app_base
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - bundle_cache:/bundle:cached
+      - node_modules:/app/node_modules:cached
+      - ..:/app
+      # Map /app files back to host drive, and visa versa
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "3000:3000"
+    environment: &app_environment
+      DB_HOST: db
+      DB_NAME: db_development
+      DB_PASSWORD: ''
+      DB_USERNAME: postgres
+      DISABLE_PRY_RAILS: 1
+      RACK_ENV: development
+      RAILS_ENV: development
+    entrypoint:
+      - /usr/bin/docker-entrypoint

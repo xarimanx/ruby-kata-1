@@ -20,7 +20,7 @@ You have to implement an abstracted and simple library system.
 
    If you reach this time limit stop your work immediately.
    It is one part of the kata to respect this time limit.
-   
+
 2. There are no restrictions on how to use the provided time.
    If you want to code the entire time, take a break or a cigaret - it’s up to you.
 
@@ -90,7 +90,7 @@ You have to implement an abstracted and simple library system.
    2. Clone this repository with local branch:
       ```bash
       git clone https://github.com/echocat/ruby-kata-1.git
-      git checkout -b run-<yourname>-<iteration number> 
+      git checkout -b run-<yourname>-<iteration number>
       # Example: git checkout -b run-mhenrixon-1
       ```
    3. Just download it from [here](https://github.com/echocat/ruby-kata-1/archive/master.zip)
@@ -102,6 +102,21 @@ You have to implement an abstracted and simple library system.
 4. Discuss with your friends and/or colleges your solution.
 
 5. Repeat after some days/weeks.
+
+## Docker app
+
+### Project setup
+To get started with the app, clone the repo and then install `docker` and `docker-copmose` application can be used without containers if required.
+
+To build first image run `docker-compose build`
+To start app run `docker-compose up`
+If you want to start specific containers run `docker-compose up [names]`
+
+### Development
+To connect to runned container `docker-compose exec [name] [command]`
+i.e. `docker-compose exec web bash`
+
+To run individual comand without running the container `docker-compose run [name] [command]`
 
 ## FAQ
 
@@ -120,7 +135,7 @@ You have to implement an abstracted and simple library system.
 
    or:
    ```bash
-   bundle exec rake test 
+   bundle exec rake test
    ```
 
 ## License
