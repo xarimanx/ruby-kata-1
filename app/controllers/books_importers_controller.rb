@@ -2,7 +2,7 @@ require 'csv'
 
 class BooksImportersController < ApplicationController
   def create
-    Book.import(params[:file])
+    Book.import(params[:file]) if params[:file]
     redirect_to root_path, flash: { notice: 'Data imported' }
   end
 end
