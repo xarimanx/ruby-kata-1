@@ -30,3 +30,14 @@
     <% end %>
   </tbody>
 </table>
+
+
+<%= form_with url: books_importer_path, local: true, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Import Books' %>
+<% end %>
+
+<%= form_with url: magazines_importer_path, local: true, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Import Magazines' %>
+<% end %>
