@@ -3,7 +3,7 @@ require 'csv'
 class BooksExportersController < ApplicationController
   def show
     FileUtils.mkdir_p Rails.root.join('tmp', 'csvs')
-    file = Rails.root.join('tmp', 'csvs', "export-#{Date.current}.csv")
+    file = Rails.root.join('tmp', 'csvs', "books-#{Date.current}.csv")
     CSV.open(file, 'wb', headers: true, col_sep: ';') do |csv|
       csv << [
         'title',
