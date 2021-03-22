@@ -6,10 +6,18 @@
   <%= form.text_field :term, value: params[:term] %>
   <%= form.submit 'search' %>
 <% end %>
+<br />
+<%= link_to 'Get list of Books', books_exporter_path, target: '_blank' %>
+<br />
+<br />
+<%= link_to 'Get list of Magazines', books_exporter_path, target: '_blank' %>
+<br />
+<br />
 
 <table>
   <thead>
     <tr>
+      <td>Type</td>
       <th>Title</th>
       <th width='10%' >Isbn</th>
       <th>Authors</th>
@@ -20,6 +28,7 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
+        <td><%= item.class.name.first %></td>
         <td><%= item.title %></td>
         <td><%= item.isbn %></td>
         <td><%= author_emails(item.authors) %></td>
@@ -36,7 +45,7 @@
   <%= file_field_tag :file %>
   <%= submit_tag 'Import Books' %>
 <% end %>
-
+<br />
 <%= form_with url: magazines_importer_path, local: true, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag 'Import Magazines' %>
