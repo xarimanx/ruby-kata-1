@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Our library</h1>
+
+<%= form_with method: :get, local: true do |form| %>
+  <%= form.text_field :term, value: params[:term] %>
+  <%= form.submit 'search' %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th width='10%' >Isbn</th>
+      <th>Authors</th>
+      <th>Extra info</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.isbn %></td>
+        <td><%= author_emails(item.authors) %></td>
+        <td>
+          <%= extra_info(item) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
